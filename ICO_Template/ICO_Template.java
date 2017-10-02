@@ -87,7 +87,7 @@ public class ICO_template extends SmartContract {
 		if (total_supply.length != 0) return false;
 		Storage.put(Storage.currentContext(), Owner, BigInteger.valueOf(pre_ico_cap));
 		Storage.put(Storage.currentContext(), "totalSupply", BigInteger.valueOf(pre_ico_cap));
-		Transfer(null, Owner, BigInteger.valueOf(pre_ico_cap));
+		Transferred(null, Owner, BigInteger.valueOf(pre_ico_cap));
 		return true;
 	}
 
@@ -133,7 +133,7 @@ public class ICO_template extends SmartContract {
 		Storage.put(Storage.currentContext(), sender, balance.add(BigInteger.valueOf(token)));
 		BigInteger totalSupply = new BigInteger(Storage.get(Storage.currentContext(), "totalSupply"));
 		Storage.put(Storage.currentContext(), "totalSupply", totalSupply.add(BigInteger.valueOf(token)));
-		Transfer(null, sender, BigInteger.valueOf(token));
+		Transferred(null, sender, BigInteger.valueOf(token));
 		return true;
 	}
 
@@ -159,7 +159,7 @@ public class ICO_template extends SmartContract {
 			Storage.put(Storage.currentContext(), from, from_value.subtract(value));
 		BigInteger to_value = new BigInteger(Storage.get(Storage.currentContext(), to));
 		Storage.put(Storage.currentContext(), to, to_value.add(value));
-		Transfer(from, to, value);
+		Transferred(from, to, value);
 		return true;
 	}
 
